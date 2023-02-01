@@ -17,5 +17,18 @@ export const THEME = extendTheme({
         red: {
             500: "#EE7979"
         }
+    },
+    fonts: {
+        heading: "Karla_700Bold",
+        body: "Karla_400Regular"
+    },
+    sizes:{
+        14: 56,
+        33: 148,
+        100: 400,
+        120: 480,
+        140: 560,
+        150: 600,
+        160: 640
     }
 })
