@@ -1,9 +1,19 @@
-import {Input as NativeInput} from "native-base";
+import {Input as NativeInput, IInputProps, Icon, Pressable, Button} from "native-base";
 
 
-export function Input(){
+import {MaterialIcons} from "@expo/vector-icons";
+
+
+type InputProps = IInputProps & {
+    show?: boolean;
+    icon?: boolean
+    handleShowPassword?: () => void;
+
+}
+export function Input({handleShowPassword, icon = false,show = true,...rest}: InputProps){
     return(
-        <NativeInput 
+        <NativeInput
+            
             variant="outline"
             h={14}
             px={4}
@@ -16,8 +26,24 @@ export function Input(){
                 borderWidth: 1,
                 bg: "gray.100"
             }}
+            InputRightElement={icon 
+                ?<Button 
+                onPress={handleShowPassword} 
+                h={8} 
+                w={8}
+                mr={2}
+                bg="gray.100"
+                _pressed={{
+                    bg: "gray.300"
+                }}
+                >
+                <Icon as={MaterialIcons}  size={8}  name={show ? "visibility" : "visibility-off"}/>
+                </Button> 
+                : 
+                undefined}
             placeholderTextColor="gray.400"
             color="gray.600"
+            {...rest}
         />
     );
 }

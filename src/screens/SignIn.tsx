@@ -1,4 +1,5 @@
 import { Center, Heading, VStack, Text,Image,  } from "native-base";
+import { useState } from "react";
 import {ScrollView} from "react-native";
 
 import LogoIMG from "@assets/logo.png";
@@ -10,22 +11,25 @@ import { Button } from "@components/Button";
 
 
 export function SignIn(){
+    const [show, setShow] = useState(false);
+    function handleShowPassword(){
+        setShow(!show);
+    }
     return(
             <ScrollView
                 contentContainerStyle={{flexGrow: 1}}
             >
                 <VStack
                     flex={1}
-                    bg="gray.200"
+                    bg="gray.100"
                 >
                     <VStack
                     bg="gray.200"
                     py={12}
                     px={10}
                     pb={24}
-
-
-                    
+                    borderBottomLeftRadius={24}
+                    borderBottomRightRadius={24}
                     >
                         <Center mb={16}>
                             <Image 
@@ -55,16 +59,44 @@ export function SignIn(){
                             >
                                 Acesse sua conta
                             </Text>
-                            <Input />
-                            <Input />
-                            <Button />
+                            <Input 
+                            type="text"
+                            placeholder="E-mail" 
+                            
+                            />
+                            <Input 
+                            type={show ? "text" : "password"} 
+                            icon 
+                            handleShowPassword={handleShowPassword} 
+                            show={show}
+                            placeholder="Senha"
+                            />
+                            <Button 
+                            title="Entrar" 
+                            type="SECONDARY"
+                            />
                         </Center>
                     </VStack>
                     <VStack
-                    bg="gray.100"
-                    h={56}
+                        bg="gray.100"
+                        h={56}
                     >
-
+                        <Center
+                        p={6}
+                        >
+                                <Text
+                                    color="gray.600"
+                                    fontSize="sm"
+                                >
+                                    Ainda não tem acesso?
+                                </Text>
+                                <Button 
+                                title="Criar uma conta"  
+                                type="TERCIARY"
+                                
+                                />
+                            
+                        </Center>
                     </VStack>
                     
                 </VStack>
